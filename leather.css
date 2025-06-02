@@ -1,0 +1,488 @@
+/* Leather Texture and Stitching Effects */
+.leather-header {
+    position: relative;
+}
+
+.leather-header:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--leather-stitch) 10%, 
+        transparent 20%, 
+        var(--leather-stitch) 30%, 
+        transparent 40%,
+        var(--leather-stitch) 50%,
+        transparent 60%,
+        var(--leather-stitch) 70%,
+        transparent 80%,
+        var(--leather-stitch) 90%,
+        transparent 100%);
+    background-size: 200% 100%;
+    animation: stitchAnimation 4s linear infinite;
+}
+
+.leather-border { /* This is applied to .section-title */
+    display: inline-block;
+    position: relative; /* Added for :before pseudo-element */
+}
+
+.leather-border:after { /* This is the thick line below section title */
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--leather-medium); /* Default background */
+    margin: 10px auto 0;
+    /* position: relative; Not needed here */
+}
+
+.leather-border:before { /* This was for stitchGlow, might be complex to position on section titles */
+    content: '';
+    position: absolute;
+    bottom: 0; /* Relative to padding-bottom of .section-title */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%; /* Adjust width as needed */
+    height: 1px;
+    background: var(--leather-stitch);
+    animation: stitchGlow 2s ease-in-out infinite alternate;
+    opacity: 0.7; /* Make it subtle */
+}
+
+/* Leather Cards */
+.leather-card {
+    background-color: #fff;
+    border: 1px solid var(--leather-light);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.leather-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.leather-card i {
+    font-size: 2.5rem;
+    color: var(--leather-medium);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.leather-card h3 {
+    font-size: 1.2rem;
+    color: var(--leather-dark);
+}
+
+.leather-card:hover i {
+    transform: scale(1.1);
+    color: var(--gold-accent);
+}
+
+.card-stitching {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--leather-stitch) 10%, 
+        transparent 20%, 
+        var(--leather-stitch) 30%, 
+        transparent 40%,
+        var(--leather-stitch) 50%,
+        transparent 60%,
+        var(--leather-stitch) 70%,
+        transparent 80%,
+        var(--leather-stitch) 90%,
+        transparent 100%);
+    background-size: 200% 100%;
+    opacity: 0.7;
+}
+
+.leather-card:hover .card-stitching {
+    animation: stitchAnimation 2s linear infinite;
+}
+
+/* Leather Buttons */
+.leather-button, .leather-button-outline { /* Combined for base styles */
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent; /* Base for outline button */
+    text-align: center;
+}
+
+.leather-button {
+    background-color: var(--leather-medium);
+    color: white;
+    border-color: var(--leather-medium);
+}
+
+.leather-button:before { /* Shimmer effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: all 0.5s ease;
+}
+
+.leather-button:hover {
+    background-color: var(--leather-dark);
+    border-color: var(--leather-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.leather-button:hover:before {
+    left: 100%;
+}
+
+.leather-button-outline {
+    background-color: transparent;
+    color: var(--leather-medium);
+    border-color: var(--leather-medium);
+}
+
+.leather-button-outline:hover {
+    color: white;
+    background-color: var(--leather-medium);
+    border-color: var(--leather-medium);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Leather Frame */
+.leather-frame { /* Used for campus.png image */
+    border: 15px solid transparent; /* Default, can be overridden by .about-image .leather-frame */
+    padding: 10px; /* Default, can be overridden */
+    position: relative;
+    background: var(--leather-medium);
+    background-clip: padding-box; /* Important for border effect */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: inline-block; /* To wrap the image */
+}
+
+.leather-frame img {
+    display: block; /* Remove extra space under image */
+}
+
+.leather-frame:before { /* Dashed border inside the frame */
+    content: '';
+    position: absolute;
+    top: 5px;    /* Offset from the padding edge */
+    left: 5px;   /* Offset from the padding edge */
+    right: 5px;  /* Offset from the padding edge */
+    bottom: 5px; /* Offset from the padding edge */
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+/* Leather Preloader */
+.leather-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--leather-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease; /* For fade out */
+}
+.leather-preloader .logo { /* Style logo in preloader */
+    margin-bottom: 20px;
+}
+.leather-preloader h1 {
+    color: var(--text-light);
+    font-size: 1.5rem; /* Adjust as needed */
+    margin-bottom: 5px;
+}
+/* p style for preloader is inline in HTML */
+
+.leather-stitch { /* Generic stitch element, used in preloader and scroll-down */
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--leather-stitch) 10%, 
+        transparent 20%, 
+        var(--leather-stitch) 30%, 
+        transparent 40%,
+        var(--leather-stitch) 50%,
+        transparent 60%,
+        var(--leather-stitch) 70%,
+        transparent 80%,
+        var(--leather-stitch) 90%,
+        transparent 100%);
+    background-size: 200% 100%;
+    animation: stitchAnimation 2s linear infinite;
+    margin-top: 10px; /* Space from text in preloader */
+}
+
+.leather-text { /* KILT text in preloader, currently commented out in HTML */
+    font-size: 3rem;
+    color: var(--leather-stitch);
+    margin-top: 20px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Leather Tabs */
+.leather-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--leather-light);
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Allow tabs to wrap on small screens */
+}
+
+.tab-button {
+    padding: 10px 20px; /* Adjusted padding */
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-weight: 600;
+    color: var(--leather-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: 1rem; /* Base font size */
+}
+
+.tab-button.active {
+    color: var(--leather-dark);
+    border-bottom-color: var(--leather-dark);
+}
+
+.tab-button:not(.active):hover {
+    color: var(--gold-accent);
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0 0 5px 5px; /* Match tab bottom border */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--leather-light); /* Add border for consistency */
+    border-top: none; /* Remove top border as tabs have bottom border */
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Leather Slider (News Slider) */
+.leather-slider { /* This is the container for slides */
+    position: relative;
+    overflow: hidden; /* This will clip slides not in view */
+    /* width: 100%; Ensure it takes full width of its parent */
+}
+.news-slider .leather-slider { /* Specific to news slider if needed */
+    /* Add any specific container styles here */
+    /* The actual slides are transformed by JS */
+}
+
+
+.slide { /* Individual news slide */
+    padding: 25px; /* Adjusted padding */
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--leather-light);
+    position: relative; /* For :before pseudo-element if used */
+    /* width: 100%; Will be handled by JS transform for sliding effect */
+    /* flex-shrink: 0; If slides are in a flex container */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+.slide:before { /* Decorative top border on slide */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: var(--leather-medium);
+    border-radius: 5px 5px 0 0; /* Match slide top radius */
+}
+
+.news-date {
+    font-size: 0.85rem; /* Adjusted size */
+    color: var(--leather-medium);
+    margin-bottom: 8px; /* Adjusted margin */
+}
+
+.slide h3 {
+    font-size: 1.2rem; /* Adjusted size */
+    margin-bottom: 12px; /* Adjusted margin */
+    color: var(--leather-dark); /* Default from style.css is gold */
+}
+
+.slide p {
+    margin-bottom: 15px; /* Adjusted margin */
+    font-size: 0.95rem; /* Base paragraph size for slides */
+    line-height: 1.5;
+}
+
+.read-more {
+    color: var(--leather-medium);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.read-more i {
+    transition: transform 0.3s ease;
+}
+
+.read-more:hover {
+    color: var(--leather-dark);
+}
+
+.read-more:hover i {
+    transform: translateX(5px);
+}
+
+.slider-controls { /* For News Slider */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px; /* Adjusted margin */
+}
+
+.slider-prev, /* News Slider buttons */
+.slider-next {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--leather-medium);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem; /* Icon size */
+}
+
+.slider-prev:hover, /* News Slider buttons */
+.slider-next:hover {
+    background-color: var(--leather-dark);
+    transform: scale(1.1);
+}
+
+/* Keyframes for Leather Animations */
+@keyframes stitchAnimation {
+    0% {
+        background-position: 0% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes stitchGlow {
+    0% {
+        box-shadow: 0 0 3px var(--leather-stitch); /* Reduced glow */
+        opacity: 0.6;
+    }
+    100% {
+        box-shadow: 0 0 10px var(--leather-stitch); /* Reduced glow */
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments for leather specific elements if needed */
+@media (max-width: 768px) {
+    .leather-card {
+        padding: 20px 15px;
+    }
+    .leather-card i {
+        font-size: 2rem;
+    }
+    .leather-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .tab-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    .tab-content {
+        padding: 15px;
+    }
+    .tab-content h3 {
+        font-size: 1.1rem; /* Ensure h3 within tab content is styled */
+    }
+
+
+    .slide { /* News slide adjustments */
+        padding: 20px;
+    }
+    .slide h3 {
+        font-size: 1.1rem;
+    }
+    .slide p {
+        font-size: 0.9rem;
+    }
+    .slider-controls { /* News slider controls */
+        margin-top: 20px;
+    }
+    .slider-prev, .slider-next { /* News slider controls */
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .leather-button, .leather-button-outline {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    .leather-frame { /* For campus image */
+        border-width: 10px;
+        padding: 8px;
+    }
+    .leather-frame:before { /* Dashed border inside */
+        top: 3px; left: 3px; right: 3px; bottom: 3px;
+        border-width: 1px;
+    }
+
+    .tab-button { /* Stack tabs or allow scroll */
+        flex-grow: 1; /* Make tabs fill width if few */
+        text-align: center;
+    }
+}
